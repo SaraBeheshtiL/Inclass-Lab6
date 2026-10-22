@@ -1,5 +1,5 @@
 class Ball {
-  constructor(x, y, c, r, maxR = 10) {
+  constructor(x, y, c, r, maxR = 20) {
     // it's like the instance saying, MY X is 400. In Python the keyword is self.x.
     this.x = x;
     this.y = y;
@@ -23,8 +23,21 @@ class Ball {
     this.color = this.highlightColor;
   }
 
-  dehighlight() {
+  deHighlight() {
     this.color = this.originalColor;
+  }
+
+  isOnBody(mask) {
+    let pixel = mask.get(floor(this.x), floor(this.y)); // [r,g,b,a];
+
+    return pixel[3] < 128;
+  }
+  respond(active) {
+    if (active) {
+      this.highlight();
+    } else {
+      this.deHighlight();
+    }
   }
 
   contains(pointX, pointY) {

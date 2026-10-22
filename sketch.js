@@ -1,6 +1,6 @@
 let balls = [];
 
-let numBalls = 5000;
+let numBalls = 500;
 
 function setup() {
   const canvas = createCanvas(600, 600);
@@ -17,4 +17,14 @@ function draw() {
   for (let ball of balls) {
     ball.update(2);
   }
+}
+
+function mousePressed() {
+  balls.forEach((ball) => {
+    if (ball.contains(mouseX, mouseY)) {
+      ball.highlight();
+    } else {
+      ball.dehighlight();
+    }
+  });
 }

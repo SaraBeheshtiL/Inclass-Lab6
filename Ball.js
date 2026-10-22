@@ -4,6 +4,8 @@ class Ball {
     this.x = x;
     this.y = y;
     this.color = c;
+    this.originalColor = c;
+    this.highlightColor = "red";
     // ALSO this is a diameter, not radius.
     // This is our mistake... we should have looked at the documentation.
     this.r = r;
@@ -15,6 +17,25 @@ class Ball {
     this.changeSize(byHowMuch);
     this.move(byHowMuch);
     this.show();
+  }
+
+  highlight() {
+    this.color = this.highlightColor;
+  }
+
+  dehighlight() {
+    this.color = this.originalColor;
+  }
+
+  contains(pointX, pointY) {
+    let d = dist(pointX, pointY, this.x, this.y);
+    // this returns the condition d< this.r
+    // return d< this.r ;
+    if (d < this.r) {
+      return true;
+    } else {
+      return false;
+    }
   }
   move(byHowMuch) {
     // this.x = this.x + random(-5,5)
